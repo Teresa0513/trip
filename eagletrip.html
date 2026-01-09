@@ -9,104 +9,231 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FDFBF7;
-            --primary-blue: #1A365D;
-            --accent-gold: #C5A059;
+            --bg-color: #FDFBF7; /* 暖白色 */
+            --primary-blue: #1A365D; /* 質感深藍 */
+            --accent-gold: #C5A059; /* 柔和金色 */
             --text-dark: #2D3748;
             --text-light: #718096;
             --card-bg: #FFFFFF;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --max-width: 1000px; /* 電腦版最大寬度 */
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
             margin: 0; padding: 0;
             font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
-            line-height: 1.7;
+            line-height: 1.8;
+            scroll-behavior: smooth;
         }
 
-        /* Logo 區域 */
-        .hero-banner { width: 100%; background: #FFF; display: block; border-bottom: 1px solid #EEE; }
+        /* 頂部 Banner */
+        .hero-banner { 
+            width: 100%; 
+            background: #FFF; 
+            border-bottom: 1px solid #EEE;
+            display: flex;
+            justify-content: center;
+        }
+        .hero-banner .inner-hero {
+            width: 100%;
+            max-width: var(--max-width);
+        }
         .hero-banner img { width: 100%; height: auto; display: block; }
 
+        /* 標題區 */
         header {
-            background-color: #FFF; padding: 20px 15px; text-align: center;
+            background-color: #FFF; 
+            padding: 30px 20px; 
+            text-align: center;
         }
-        header h1 { margin: 0; font-size: 1.3rem; color: var(--primary-blue); letter-spacing: 2px; }
-        #weather-widget { font-size: 0.85rem; color: var(--text-light); margin-top: 8px; font-weight: 400; }
+        header h1 { 
+            margin: 0; 
+            font-size: 1.6rem; 
+            color: var(--primary-blue); 
+            letter-spacing: 3px; 
+            font-weight: 700;
+        }
+        #weather-widget { 
+            font-size: 0.95rem; 
+            color: var(--text-light); 
+            margin-top: 10px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
 
-        /* 滑動導航列 */
+        /* 響應式導航列 */
         nav {
-            background: rgba(255,255,255,0.95); display: flex; justify-content: space-around;
-            padding: 12px 0; position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid #EEE; backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95); 
+            display: flex; 
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            border-bottom: 1px solid #EEE; 
+            backdrop-filter: blur(10px);
         }
         nav a {
-            text-decoration: none; color: var(--text-light); font-size: 0.9rem;
-            padding: 6px 18px; border-radius: 20px; transition: 0.3s;
+            text-decoration: none; 
+            color: var(--text-light); 
+            font-size: 1rem;
+            padding: 8px 25px; 
+            border-radius: 30px; 
+            transition: 0.3s;
+            font-weight: 400;
         }
-        nav a.active { background-color: var(--primary-blue); color: white; font-weight: 500; }
+        nav a.active { 
+            background-color: var(--primary-blue); 
+            color: white; 
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(26, 54, 93, 0.2);
+        }
 
-        .container { padding: 15px; padding-bottom: 80px; }
-        .day-section { scroll-margin-top: 80px; margin-bottom: 40px; }
+        /* 主要內容容器 */
+        .main-wrapper {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 30px 20px 100px 20px;
+        }
+
+        .day-section { 
+            scroll-margin-top: 100px; 
+            margin-bottom: 60px; 
+        }
         .day-title { 
-            font-size: 1.2rem; color: var(--primary-blue); font-weight: 700; 
-            margin-bottom: 20px; padding-left: 12px; border-left: 4px solid var(--accent-gold);
+            font-size: 1.4rem; 
+            color: var(--primary-blue); 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            padding-left: 15px; 
+            border-left: 5px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* 靜態卡片設計 */
+        /* 行程卡片佈局 */
         .card {
-            background: var(--card-bg); border-radius: 18px; 
-            margin-bottom: 25px; box-shadow: var(--shadow); overflow: hidden;
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            margin-bottom: 30px; 
+            box-shadow: var(--shadow); 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        /* 電腦版滑過效果 */
+        @media (min-width: 1024px) {
+            .card:hover { transform: translateY(-5px); }
         }
 
         .card-img {
-            width: 100%; height: 220px; object-fit: cover; background: #EEE; display: block;
+            width: 100%; 
+            height: auto;
+            max-height: 450px; /* 防止電腦版照片過高 */
+            object-fit: cover; 
+            background: #F0F0F0;
         }
 
-        /* 卡片內容 */
-        .card-content { padding: 20px; }
+        .card-content { padding: 30px; }
+        
         .card-tag { 
-            font-size: 0.7rem; color: var(--accent-gold); font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block;
+            font-size: 0.75rem; 
+            color: var(--accent-gold); 
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            margin-bottom: 10px; 
+            display: block;
         }
-        .card h3 { margin: 0 0 12px 0; font-size: 1.15rem; color: var(--primary-blue); }
-        .card p { font-size: 0.95rem; color: var(--text-dark); margin: 0 0 15px 0; text-align: justify; }
+        .card h3 { 
+            margin: 0 0 15px 0; 
+            font-size: 1.3rem; 
+            color: var(--primary-blue); 
+        }
+        .card p { 
+            font-size: 1rem; 
+            color: var(--text-dark); 
+            margin: 0 0 20px 0; 
+            text-align: justify;
+            opacity: 0.9;
+        }
 
         /* 亮點區塊 */
         .highlight-box {
-            background: #F9F9F9; border-radius: 10px; padding: 15px; margin-top: 10px;
+            background: #F8F9FB; 
+            border-radius: 12px; 
+            padding: 20px; 
+            margin-top: 15px;
+            border-left: 3px solid #E2E8F0;
         }
-        .highlight-box h4 { margin: 0 0 8px 0; font-size: 0.9rem; color: var(--primary-blue); }
-        .highlight-list { margin: 0; padding-left: 18px; font-size: 0.85rem; color: var(--text-light); }
-        .highlight-list li { margin-bottom: 5px; }
+        .highlight-box h4 { margin: 0 0 10px 0; font-size: 1rem; color: var(--primary-blue); }
+        .highlight-list { margin: 0; padding-left: 20px; font-size: 0.95rem; color: var(--text-light); }
+        .highlight-list li { margin-bottom: 8px; }
 
-        /* 表格資訊 */
+        /* 交通表格 */
         .transport-info {
-            font-size: 0.85rem; border-collapse: collapse; width: 100%; margin-top: 10px;
+            font-size: 1rem; 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin-top: 10px;
         }
-        .transport-info td { padding: 8px; border-bottom: 1px solid #F0F0F0; }
-        .transport-info .time { color: var(--accent-gold); font-weight: 700; width: 70px; }
+        .transport-info td { padding: 12px 10px; border-bottom: 1px solid #F0F0F0; }
+        .transport-info .time { color: var(--accent-gold); font-weight: 700; width: 90px; }
 
-        footer { text-align: center; padding: 50px 20px; color: var(--text-light); font-size: 0.75rem; border-top: 1px solid #EEE; }
+        footer { 
+            text-align: center; 
+            padding: 60px 20px; 
+            color: var(--text-light); 
+            font-size: 0.9rem; 
+            background: #FFF;
+            border-top: 1px solid #EEE; 
+        }
+
         .btn-link { 
-            display: inline-block; margin-top: 10px; padding: 8px 16px; 
-            border: 1px solid var(--primary-blue); color: var(--primary-blue);
-            text-decoration: none; border-radius: 8px; font-size: 0.85rem;
+            display: inline-block; 
+            margin-top: 10px; 
+            padding: 10px 20px; 
+            border: 1px solid var(--primary-blue); 
+            color: var(--primary-blue);
+            text-decoration: none; 
+            border-radius: 10px; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .btn-link:hover {
+            background: var(--primary-blue);
+            color: #FFF;
+        }
+
+        /* 手機版微調 */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.3rem; }
+            nav a { padding: 6px 15px; font-size: 0.9rem; }
+            .card-content { padding: 20px; }
+            .card-img { height: 220px; }
+            .day-title { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="hero-banner">
-    <img src="images/logo.png" alt="基高公司 Logo">
+    <div class="inner-hero">
+        <img src="images/logo.png" alt="基高公司 Logo">
+    </div>
 </div>
 
 <header>
-    <h1>🌟 基高公司尾牙旅遊手冊</h1>
-    <div id="weather-widget">讀取天氣資訊中...</div>
+    <h1>基高公司尾牙旅遊手冊</h1>
+    <div id="weather-widget">正在連線氣象觀測站...</div>
 </header>
 
 <nav id="day-nav">
@@ -115,20 +242,20 @@
     <a href="#day3">第三天</a>
 </nav>
 
-<div class="container">
+<div class="main-wrapper">
     
     <!-- Day 1 -->
     <section id="day1" class="day-section">
-        <div class="day-title">第一天｜安平文化散策</div>
+        <div class="day-title">📅 第一天｜1/9(五) 安平文化散策</div>
         
         <div class="card">
             <div class="card-content">
-                <span class="card-tag">出發資訊</span>
+                <span class="card-tag">TRANSPORT</span>
                 <h3>交通集合資訊</h3>
                 <table class="transport-info">
-                    <tr><td class="time">10:48</td><td><b>台北同仁：</b>搭乘高鐵619抵達嘉義站。</td></tr>
-                    <tr><td class="time">08:50</td><td><b>雲林同仁：</b>工廠集合搭巴士前往嘉義。</td></tr>
-                    <tr><td class="time">10:00</td><td><b>高雄同仁：</b>兩組會合後展開行程。</td></tr>
+                    <tr><td class="time">10:48</td><td><b>台北同仁：</b>搭乘高鐵 619 車次抵達嘉義高鐵站。</td></tr>
+                    <tr><td class="time">08:50</td><td><b>雲林同仁：</b>工廠集合搭乘巴士前往嘉義高鐵站接台北同仁。</td></tr>
+                    <tr><td class="time">10:00</td><td><b>高雄同仁：</b>出發前往台南，全員會合安平航海城。</td></tr>
                 </table>
             </div>
         </div>
@@ -136,17 +263,17 @@
         <div class="card">
             <img src="images/day1.jpg" class="card-img" alt="安平航海城">
             <div class="card-content">
-                <span class="card-tag">午餐與歷史</span>
+                <span class="card-tag">LUNCH & HISTORY</span>
                 <h3>深緣及水－安平航海城</h3>
-                <p>以荷蘭烏特勒支城為入口意象，融合大航海時代多國文化背景，是台南與世界歷史交織的新地標。</p>
+                <p>「深緣及水」為呈現熱蘭遮城關聯歷史場景，以荷蘭烏特勒支城 (Fort Utrecht) 為入口意象。內裝設計結合大航海時代歐洲與亞洲各國（荷、英、美、西、義、希、日、中等）的文化足跡與貿易歷史，展現當年國際城市景象。</p>
                 <div class="highlight-box">
-                    <h4>園區必看亮點：</h4>
+                    <h4>全新「安平航海城」亮點：</h4>
                     <ul class="highlight-list">
-                        <li>1樓：復刻《鐵達尼號》華麗大廳及英國文物收藏</li>
-                        <li>2樓：台南復古風餐廳</li>
-                        <li>3樓：神還原《鐵達尼號》甲板造景</li>
-                        <li>4樓：觀景台賞「安平」全景</li>
-                        <li>戶外：打卡「英國雙層巴士」</li>
+                        <li><b>戶外：</b>打卡著名的「英國雙層巴士」。</li>
+                        <li><b>1樓：</b>復刻《鐵達尼號》華麗大廳及各式歷史文物。</li>
+                        <li><b>2樓：</b>台南復古風特色餐廳（享用帕其林自助餐）。</li>
+                        <li><b>3樓：</b>神還原《鐵達尼號》經典甲板造景。</li>
+                        <li><b>4樓：</b>觀景台 360 度賞「安平」美景，與古堡遙遙相對。</li>
                     </ul>
                 </div>
             </div>
@@ -155,16 +282,15 @@
         <div class="card">
             <img src="images/day1-3.jpg" class="card-img" alt="金色流域">
             <div class="card-content">
-                <span class="card-tag">下午行程</span>
+                <span class="card-tag">AFTERNOON</span>
                 <h3>安平金色流域遊船</h3>
-                <p>船遊安平運河「金色流域」，從水上視角欣賞台南之美。這條約 2.5 公里的流域被譽為「台版塞納河」。</p>
+                <p>搭乘平底船，從河道視角欣賞城市風光。結合光影環境與空間美學，運河倒映出全長 2.5 公里的金色流域，享有「台版塞納河」之美稱。</p>
                 <div class="highlight-box">
-                    <h4>體驗亮點：</h4>
+                    <h4>行程體驗：</h4>
                     <ul class="highlight-list">
-                        <li>航程約 45-50 分鐘，輕鬆適合全員參與。</li>
-                        <li>低橋穿梭：最低橋墩需低頭通過，體驗刺激有趣。</li>
-                        <li>導覽介紹台南城市與運河的歷史故事。</li>
-                        <li>漫步老街：自由品嚐特色小吃與採買伴手禮。</li>
+                        <li><b>金色流域：</b>欣賞安平夕照與運河水岸風光（船程約 45-50 分）。</li>
+                        <li><b>趣味過橋：</b>行經低矮橋墩時，需彎下腰低頭才能通過，刺激有趣。</li>
+                        <li><b>古街漫步：</b>安平老街巷弄尋寶，品嚐台南特色小吃、採買伴手禮。</li>
                     </ul>
                 </div>
             </div>
@@ -172,79 +298,79 @@
 
         <div class="card">
             <div class="card-content">
-                <span class="card-tag">入住飯店</span>
-                <h3>禧榕軒酒店</h3>
-                <p>五星級飯店，鄰近市區、環境舒適逛街方便，設有頂樓高空泳池可供放鬆。</p>
-                <a href="https://www.grandbanyanhotel.com/" class="btn-link">查看官方網站</a>
+                <span class="card-tag">HOTEL</span>
+                <h3>住宿｜禧榕軒酒店</h3>
+                <p>五星級精品飯店，環境舒適且鄰近市區，方便團體晚間自由逛街與休息。</p>
+                <a href="https://www.grandbanyanhotel.com/" target="_blank" class="btn-link">查看酒店官網</a>
             </div>
         </div>
     </section>
 
     <!-- Day 2 -->
     <section id="day2" class="day-section">
-        <div class="day-title">第二天｜生態與自然巡禮</div>
+        <div class="day-title">📅 第二天｜1/10(六) 生態與藝術巡禮</div>
 
         <div class="card">
             <img src="images/day2.jpg" class="card-img" alt="生命之樹">
             <div class="card-content">
-                <span class="card-tag">打卡地標</span>
+                <span class="card-tag">LANDMARK</span>
                 <h3>青鯤鯓生命之樹</h3>
-                <p>位於扇形鹽田中心的純白大型藝術裝置，象徵土地生命力，非常適合團體大合照。</p>
+                <p>位於扇形鹽田中心的大型藝術裝置。全白優雅的結構，象徵土地的生命张力，是目前台南最受歡迎的團體大合照打卡點。</p>
             </div>
         </div>
 
         <div class="card">
             <img src="images/day2-2.jpg" class="card-img" alt="頑皮世界">
             <div class="card-content">
-                <span class="card-tag">互動體驗</span>
-                <h3>頑皮家族動物園</h3>
-                <p>南台灣最具人氣的互動式動物園，可以近距離觀察動物。適合全員放鬆享受大自然。</p>
+                <span class="card-tag">ZOO EXPERIENCE</span>
+                <h3>頑皮世界野生動物園</h3>
+                <p>南台灣最具人氣的互動式動物園。採半開放式設計，讓同仁可以近距離接觸並餵食動物，在忙碌的工作之餘享受大自然的療癒。</p>
                 <div class="highlight-box">
-                    <h4>園區特色：</h4>
+                    <h4>亮點提醒：</h4>
                     <ul class="highlight-list">
-                        <li>可餵食水豚、草泥馬等可愛動物。</li>
-                        <li>互動區範圍廣闊，行走輕鬆。</li>
+                        <li>可餵食水豚、草泥馬、長頸鹿等明星動物。</li>
+                        <li>適合全體團員放鬆享受自然美景。</li>
                     </ul>
                 </div>
-                <a href="https://www.wanpiworldzoo.com.tw/" class="btn-link">園區導覽</a>
+                <a href="https://www.wanpiworldzoo.com.tw/" target="_blank" class="btn-link">查看園區導覽</a>
             </div>
         </div>
 
         <div class="card">
             <img src="images/day2-3.jpg" class="card-img" alt="烏山頭水庫">
             <div class="card-content">
-                <span class="card-tag">文化景點 (備案)</span>
+                <span class="card-tag">CULTURE (RESERVE)</span>
                 <h3>烏山頭水庫</h3>
-                <p>湖光山色景緻優美，可參觀八田與一紀念園區，深度了解台灣水利歷史背景。</p>
+                <p>湖光山色景緻優美。漫步於八田與一紀念園區，了解台灣水利之父的貢獻與歷史背景。</p>
             </div>
         </div>
     </section>
 
     <!-- Day 3 -->
     <section id="day3" class="day-section">
-        <div class="day-title">第三天｜文化洗禮與歡聚</div>
+        <div class="day-title">📅 第三天｜1/11(日) 文化洗禮與尾牙慶宴</div>
 
         <div class="card">
             <img src="images/day3.jpg" class="card-img" alt="佛陀紀念館">
             <div class="card-content">
-                <span class="card-tag">上午行程</span>
-                <h3>高雄佛陀紀念館</h3>
-                <p>國際級文化與宗教園區，建築宏偉、園區開闊。適合團體合照與文化參訪，洗滌身心靈。</p>
-                <a href="https://www.fgsbmc.org.tw/" class="btn-link">查看地圖</a>
+                <span class="card-tag">CULTURE</span>
+                <h3>佛光山佛陀紀念館</h3>
+                <p>國際級的文化與宗教園區，建築氣勢磅礴。漫步成佛大道，欣賞宏偉的大佛景觀，最適合團體留影與靜心參訪。</p>
+                <a href="https://www.fgsbmc.org.tw/" target="_blank" class="btn-link">官方網站</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="images/day3-2.jpg" class="card-img" alt="餐車烤肉">
+            <img src="images/day3-2.jpg" class="card-img" alt="廠辦烤肉">
             <div class="card-content">
-                <span class="card-tag">午間活動</span>
+                <span class="card-tag">TAILGATE PARTY</span>
                 <h3>廠辦餐車烤肉（高雄鳳山）</h3>
-                <p>美式餐車風格烤肉，提供輕鬆的團康氛圍與美食，增進同仁交流與尾牙歡樂氣氛。</p>
+                <p>尾牙壓軸活動！採用創新的餐車風格烤肉，營造輕鬆愉快的戶外氛圍。結合團康活動與同仁交流，為三天兩夜的旅程畫下完美句點。</p>
                 <div class="highlight-box">
-                    <h4>圓滿結束：</h4>
+                    <h4>圓滿落幕：</h4>
                     <ul class="highlight-list">
-                        <li>享用特色烤肉料理。</li>
-                        <li>結束後帶著快樂心情返回各地。</li>
+                        <li>享受美式風格特色烤肉料理。</li>
+                        <li>結束後滿載歡樂回憶返回各地。</li>
                     </ul>
                 </div>
             </div>
@@ -252,7 +378,8 @@
     </section>
 
     <footer>
-        &copy; 2026 基高股份有限公司 (Eagle Process Service Ltd.)<br>祝所有同仁尾牙旅遊愉快！
+        <p><b>基高股份有限公司 Eagle Process Service Ltd.</b></p>
+        <p>&copy; 2026 尾牙籌備小組 製作 ・ 祝您旅途愉快</p>
     </footer>
 </div>
 
@@ -266,25 +393,30 @@
             document.getElementById('weather-widget').innerHTML = 
                 `📍 目前目的地氣溫：${Math.round(data.main.temp)}°C / ${data.weather[0].description}`;
         } catch (e) {
-            document.getElementById('weather-widget').innerText = "📍 氣象讀取中...";
+            document.getElementById('weather-widget').innerText = "📍 氣象站資料讀取中...";
         }
     }
 
-    // 捲動監測與導航切換
+    // Scroll Spy 捲動監測
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('.day-section');
         const navLinks = document.querySelectorAll('#day-nav a');
         let current = "";
+        
         sections.forEach(s => {
-            if (pageYOffset >= s.offsetTop - 120) current = s.getAttribute('id');
+            if (pageYOffset >= s.offsetTop - 150) {
+                current = s.getAttribute('id');
+            }
         });
+        
         navLinks.forEach(l => {
             l.classList.remove('active');
-            if (l.getAttribute('href').includes(current)) l.classList.add('active');
+            if (l.getAttribute('href').includes(current)) {
+                l.classList.add('active');
+            }
         });
     });
 
-    // 啟動天氣
     fetchWeather();
 </script>
 </body>
