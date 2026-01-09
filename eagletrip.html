@@ -24,174 +24,306 @@
             font-family: 'Noto Sans TC', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* 讓 Logo 滿版變大 */
-        .hero-banner {
-            width: 100%; 
-            height: auto; /* 讓高度隨圖片比例 */
-            background: #FFF;
-            display: block;
-        }
-        .hero-banner img { 
-            width: 100%; 
-            height: auto; 
-            display: block;
-        }
+        /* Logo 區域 */
+        .hero-banner { width: 100%; background: #FFF; display: block; }
+        .hero-banner img { width: 100%; height: auto; display: block; }
 
         header {
-            background-color: #FFF; padding: 15px; text-align: center;
+            background-color: #FFF; padding: 20px 15px; text-align: center;
             border-bottom: 1px solid #EEE;
         }
-        header h1 { margin: 0; font-size: 1.2rem; color: var(--primary-blue); letter-spacing: 1px; }
-        #weather-widget { font-size: 0.85rem; color: var(--text-light); margin-top: 5px; }
+        header h1 { margin: 0; font-size: 1.3rem; color: var(--primary-blue); letter-spacing: 2px; }
+        #weather-widget { font-size: 0.85rem; color: var(--text-light); margin-top: 8px; font-weight: 400; }
 
+        /* 滑動導航列 */
         nav {
-            background: rgba(255,255,255,0.95); display: flex; justify-content: space-around;
+            background: rgba(255,255,255,0.9); display: flex; justify-content: space-around;
             padding: 12px 0; position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid #EEE; backdrop-filter: blur(10px);
         }
         nav a {
             text-decoration: none; color: var(--text-light); font-size: 0.9rem;
-            padding: 5px 15px; border-radius: 20px; transition: 0.3s;
+            padding: 6px 18px; border-radius: 20px; transition: 0.3s;
         }
-        nav a.active { background-color: var(--primary-blue); color: white; }
+        nav a.active { background-color: var(--primary-blue); color: white; font-weight: 500; }
 
-        .container { padding: 15px; padding-bottom: 100px; }
-        .day-section { scroll-margin-top: 80px; margin-bottom: 30px; }
-        .day-title { font-size: 1.1rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 12px; padding-left: 10px; border-left: 4px solid var(--accent-gold); }
+        .container { padding: 15px; padding-bottom: 80px; }
+        .day-section { scroll-margin-top: 80px; margin-bottom: 40px; }
+        .day-title { 
+            font-size: 1.2rem; color: var(--primary-blue); font-weight: 700; 
+            margin-bottom: 20px; padding-left: 12px; border-left: 4px solid var(--accent-gold);
+        }
 
+        /* 行程卡片 */
         .card {
-            background: var(--card-bg); border-radius: 16px; 
-            margin-bottom: 20px; box-shadow: var(--shadow); overflow: hidden;
+            background: var(--card-bg); border-radius: 18px; 
+            margin-bottom: 25px; box-shadow: var(--shadow); overflow: hidden;
         }
 
-        .slider-container { position: relative; width: 100%; height: 200px; background: #EEE; }
+        /* 幻燈片 */
+        .slider-container { position: relative; width: 100%; height: 230px; background: #F0F0F0; }
         .slider {
             display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
             scroll-behavior: smooth; width: 100%; height: 100%;
         }
         .slider::-webkit-scrollbar { display: none; }
-        
         .slide { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: start; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
 
         .dots {
-            position: absolute; bottom: 10px; left: 50%;
+            position: absolute; bottom: 12px; left: 50%;
             transform: translateX(-50%); display: flex; gap: 6px;
         }
-        .dot { width: 6px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 50%; }
-        .dot.active { background: #FFF; width: 15px; border-radius: 10px; }
+        .dot { width: 6px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: #FFF; width: 16px; border-radius: 10px; }
 
-        .card-content { padding: 15px; }
-        .tag { font-size: 0.7rem; color: var(--accent-gold); font-weight: 700; }
-        .card h3 { margin: 5px 0 8px 0; font-size: 1.05rem; color: var(--primary-blue); }
-        .card p { font-size: 0.9rem; color: var(--text-dark); margin: 0; opacity: 0.8; }
-        .detail-info { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #EEE; font-size: 0.8rem; color: var(--text-light); }
+        /* 卡片內容 */
+        .card-content { padding: 20px; }
+        .card-tag { 
+            font-size: 0.7rem; color: var(--accent-gold); font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block;
+        }
+        .card h3 { margin: 0 0 12px 0; font-size: 1.15rem; color: var(--primary-blue); }
+        .card p { font-size: 0.95rem; color: var(--text-dark); margin: 0 0 15px 0; text-align: justify; }
 
-        footer { text-align: center; padding: 40px; color: var(--text-light); font-size: 0.8rem; }
+        /* 亮點清單 */
+        .highlight-box {
+            background: #F9F9F9; border-radius: 10px; padding: 15px; margin-top: 10px;
+        }
+        .highlight-box h4 { margin: 0 0 8px 0; font-size: 0.9rem; color: var(--primary-blue); }
+        .highlight-list { margin: 0; padding-left: 18px; font-size: 0.85rem; color: var(--text-light); }
+        .highlight-list li { margin-bottom: 5px; }
+
+        /* 交通表格資訊 */
+        .transport-info {
+            font-size: 0.85rem; border-collapse: collapse; width: 100%; margin-top: 10px;
+        }
+        .transport-info td { padding: 8px; border-bottom: 1px solid #F0F0F0; }
+        .transport-info .time { color: var(--accent-gold); font-weight: 700; width: 70px; }
+
+        footer { text-align: center; padding: 50px 20px; color: var(--text-light); font-size: 0.75rem; border-top: 1px solid #EEE; }
+        .btn-link { 
+            display: inline-block; margin-top: 15px; padding: 8px 16px; 
+            border: 1px solid var(--primary-blue); color: var(--primary-blue);
+            text-decoration: none; border-radius: 8px; font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
 
 <div class="hero-banner">
-    <!-- Logo 會自動撐開寬度 -->
-    <img src="logo.png" alt="基高公司 Logo">
+    <img src="images/logo.png" alt="基高公司 Logo">
 </div>
 
 <header>
-    <h1>🌟 基高公司尾牙旅遊指南</h1>
-    <div id="weather-widget">正在讀取天氣...</div>
+    <h1>🌟 基高公司尾牙三日遊</h1>
+    <div id="weather-widget">讀取台南即時天氣中...</div>
 </header>
 
 <nav id="day-nav">
-    <a href="#day1" class="active">第一天</a>
-    <a href="#day2">第二天</a>
-    <a href="#day3">第三天</a>
+    <a href="#day1" class="active">Day 1</a>
+    <a href="#day2">Day 2</a>
+    <a href="#day3">Day 3</a>
 </nav>
 
 <div class="container">
     
+    <!-- Day 1 -->
     <section id="day1" class="day-section">
-        <div class="day-title">1/9(五) 安平文化與水影</div>
+        <div class="day-title">第一天｜安平文化散策</div>
+        
+        <!-- 交通資訊 -->
         <div class="card">
-            <div class="slider-container">
-                <div class="slider" onscroll="updateDots(this)">
-                    <div class="slide"><img src="day1.jpg"></div>
-                    <div class="slide"><img src="day1-2.jpg"></div>
-                    <div class="slide"><img src="day1-3.jpg"></div>
-                </div>
-                <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
-            </div>
             <div class="card-content">
-                <span class="tag">景點介紹</span>
-                <h3>安平航海城 & 運河遊船</h3>
-                <p>探索大航海時代的安平足跡。夜晚入住五星級禧榕軒酒店。</p>
+                <span class="card-tag">出發與集合</span>
+                <h3>全員會合資訊</h3>
+                <table class="transport-info">
+                    <tr><td class="time">10:48</td><td><b>台北同仁：</b>搭乘高鐵619抵達嘉義站。</td></tr>
+                    <tr><td class="time">08:50</td><td><b>雲林同仁：</b>工廠集合搭巴士前往嘉義高鐵。</td></tr>
+                    <tr><td class="time">10:00</td><td><b>高雄同仁：</b>出發前往安平航海城。</td></tr>
+                </table>
             </div>
         </div>
-    </section>
 
-    <section id="day2" class="day-section">
-        <div class="day-title">1/10(六) 自然與互動體驗</div>
+        <!-- 午餐/航海城 -->
         <div class="card">
             <div class="slider-container">
                 <div class="slider" onscroll="updateDots(this)">
-                    <div class="slide"><img src="day2.jpg"></div>
-                    <div class="slide"><img src="day2-2.jpg"></div>
-                    <div class="slide"><img src="day2-3.jpg"></div>
-                </div>
-                <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
-            </div>
-            <div class="card-content">
-                <span class="tag">生態與藝術</span>
-                <h3>生命之樹 & 頑皮世界</h3>
-                <p>在扇形鹽田捕捉生命之樹的壯闊，並與可愛動物近距離互動。</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="day3" class="day-section">
-        <div class="day-title">1/11(日) 文化巡禮與慶宴</div>
-        <div class="card">
-            <div class="slider-container">
-                <div class="slider" onscroll="updateDots(this)">
-                    <div class="slide"><img src="day3.jpg"></div>
-                    <div class="slide"><img src="day3-2.jpg"></div>
+                    <div class="slide"><img src="images/day1.jpg"></div>
+                    <div class="slide"><img src="images/day1-2.jpg"></div>
                 </div>
                 <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
             </div>
             <div class="card-content">
-                <span class="tag">文化壓軸</span>
-                <h3>佛陀紀念館 & 廠辦烤肉</h3>
-                <p>參訪宏偉的佛陀紀念館，中午前往鳳山參與餐車烤肉尾牙派對。</p>
+                <span class="card-tag">午餐盛宴</span>
+                <h3>深緣及水－安平航海城</h3>
+                <p>以荷蘭烏特勒支城為意象設計，結合大航海時代多國文化足跡，形塑安平新地標。</p>
+                <div class="highlight-box">
+                    <h4>全新亮點一次看：</h4>
+                    <ul class="highlight-list">
+                        <li>1樓：復刻《鐵達尼號》華麗大廳、英國文物收藏</li>
+                        <li>3樓：神還原《鐵達尼號》甲板造景</li>
+                        <li>4樓：觀景台 360 度欣賞安平港美景</li>
+                        <li>戶外：打卡「英國雙層巴士」</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 遊船 -->
+        <div class="card">
+            <div class="slider-container">
+                <div class="slider" onscroll="updateDots(this)">
+                    <div class="slide"><img src="images/day1-3.jpg"></div>
+                    <div class="slide"><img src="images/day1-2.jpg"></div>
+                </div>
+                <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+            </div>
+            <div class="card-content">
+                <span class="card-tag">下午行程</span>
+                <h3>安平金色流域遊船</h3>
+                <p>全長約 2.5 公里，結合運河、光影與歷史美學，有著「台版塞納河」之美稱。</p>
+                <div class="highlight-box">
+                    <h4>體驗細節：</h4>
+                    <ul class="highlight-list">
+                        <li>航程約 45-50 分鐘，從水上視角遊歷台南。</li>
+                        <li>沿途穿橋而過，最低橋墩需彎腰低頭，刺激有趣。</li>
+                        <li>安排導覽人員解說運河故事。</li>
+                        <li>漫步安平老街，品嚐在地小吃與採買伴手禮。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 飯店 -->
+        <div class="card">
+            <div class="card-content">
+                <span class="card-tag">入住酒店</span>
+                <h3>禧榕軒酒店</h3>
+                <p>五星級飯店，鄰近市區環境舒適，適合晚間逛街休息。</p>
+                <a href="https://www.grandbanyanhotel.com/" class="btn-link">開啟飯店官網</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 2 -->
+    <section id="day2" class="day-section">
+        <div class="day-title">第二天｜生態與水庫巡禮</div>
+
+        <div class="card">
+            <div class="slider-container">
+                <div class="slider" onscroll="updateDots(this)">
+                    <div class="slide"><img src="images/day2.jpg"></div>
+                    <div class="slide"><img src="images/day2-2.jpg"></div>
+                </div>
+                <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+            </div>
+            <div class="card-content">
+                <span class="card-tag">熱門打卡</span>
+                <h3>青鯤鯓生命之樹</h3>
+                <p>大型裝置藝術與扇形鹽田地景，是團隊大合照的最佳場所。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="slider-container">
+                <div class="slider" onscroll="updateDots(this)">
+                    <div class="slide"><img src="images/day2-2.jpg"></div>
+                    <div class="slide"><img src="images/day2-3.jpg"></div>
+                </div>
+                <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+            </div>
+            <div class="card-content">
+                <span class="card-tag">療癒行程</span>
+                <h3>頑皮世界野生動物園</h3>
+                <p>南台灣最具人氣的互動式動物園，可以近距離觀察並餵食水豚、草泥馬等可愛動物。</p>
+                <a href="https://www.wanpiworldzoo.com.tw/" class="btn-link">園區資訊</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="slider-container">
+                <div class="slider" onscroll="updateDots(this)">
+                    <div class="slide"><img src="images/day2-3.jpg"></div>
+                    <div class="slide"><img src="images/day2.jpg"></div>
+                </div>
+                <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+            </div>
+            <div class="card-content">
+                <span class="card-tag">文化地景 (備案)</span>
+                <h3>烏山頭水庫</h3>
+                <p>欣賞湖光山色，參觀八田與一紀念園區，深度了解台灣水利開發歷史。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 3 -->
+    <section id="day3" class="day-section">
+        <div class="day-title">第三天｜文化洗禮與慶宴</div>
+
+        <div class="card">
+            <div class="slider-container">
+                <div class="slider" onscroll="updateDots(this)">
+                    <div class="slide"><img src="images/day3.jpg"></div>
+                    <div class="slide"><img src="images/day3-2.jpg"></div>
+                </div>
+                <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+            </div>
+            <div class="card-content">
+                <span class="card-tag">上午行程</span>
+                <h3>佛陀紀念館</h3>
+                <p>國際級文化與宗教園區，建築宏偉開闊。是本次行程中最重要的合照與文化參訪點。</p>
+                <a href="https://www.fgsbmc.org.tw/" class="btn-link">官方導覽</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="slider-container">
+                <div class="slider" onscroll="updateDots(this)">
+                    <div class="slide"><img src="images/day3-2.jpg"></div>
+                    <div class="slide"><img src="images/day3.jpg"></div>
+                </div>
+                <div class="dots"><div class="dot active"></div><div class="dot"></div></div>
+            </div>
+            <div class="card-content">
+                <span class="card-tag">中午慶宴</span>
+                <h3>廠辦餐車烤肉（高雄鳳山）</h3>
+                <p>採用美式餐車風格烤肉，提供放鬆、輕鬆的互動環境，增進同仁間的情感交流。餐後圓滿結束旅程。</p>
             </div>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 基高股份有限公司 ・ 祝旅途愉快
+        &copy; 2026 基高股份有限公司 (Eagle Process Service Ltd.)<br>祝各位同仁尾牙旅遊愉快！
     </footer>
 </div>
 
 <script>
+    // 1. 自動更新分頁圓點
     function updateDots(slider) {
         const index = Math.round(slider.scrollLeft / slider.offsetWidth);
         const dots = slider.parentElement.querySelectorAll('.dot');
         dots.forEach((dot, i) => { dot.classList.toggle('active', i === index); });
     }
 
+    // 2. 天氣 API
     const API_KEY = '88ab07bdb1492d90271d2146ba5efe95';
     async function fetchWeather() {
         try {
             const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Tainan&units=metric&appid=${API_KEY}&lang=zh_tw`);
             const data = await res.json();
-            document.getElementById('weather-widget').innerText = `📍 台南目前：${Math.round(data.main.temp)}°C / ${data.weather[0].description}`;
+            const temp = Math.round(data.main.temp);
+            const desc = data.weather[0].description;
+            document.getElementById('weather-widget').innerHTML = `📍 目的地即時氣溫：${temp}°C / ${desc}`;
         } catch (e) {
             document.getElementById('weather-widget').innerText = "📍 氣象讀取中...";
         }
     }
 
+    // 3. 導航滾動監測
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('.day-section');
         const navLinks = document.querySelectorAll('#day-nav a');
@@ -205,5 +337,6 @@
 
     fetchWeather();
 </script>
+
 </body>
 </html>
