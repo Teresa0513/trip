@@ -16,7 +16,7 @@
             --text-light: #718096;
             --card-bg: #FFFFFF;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            --max-width: 1000px; /* 電腦版最大寬度 */
+            --max-width: 1000px; 
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -130,7 +130,6 @@
             flex-direction: column;
             transition: transform 0.3s ease;
         }
-        /* 電腦版滑過效果 */
         @media (min-width: 1024px) {
             .card:hover { transform: translateY(-5px); }
         }
@@ -138,7 +137,7 @@
         .card-img {
             width: 100%; 
             height: auto;
-            max-height: 450px; /* 防止電腦版照片過高 */
+            max-height: 450px; 
             object-fit: cover; 
             background: #F0F0F0;
         }
@@ -166,7 +165,6 @@
             opacity: 0.9;
         }
 
-        /* 亮點區塊 */
         .highlight-box {
             background: #F8F9FB; 
             border-radius: 12px; 
@@ -178,7 +176,6 @@
         .highlight-list { margin: 0; padding-left: 20px; font-size: 0.95rem; color: var(--text-light); }
         .highlight-list li { margin-bottom: 8px; }
 
-        /* 交通表格 */
         .transport-info {
             font-size: 1rem; 
             border-collapse: collapse; 
@@ -208,12 +205,8 @@
             font-size: 0.9rem;
             transition: 0.3s;
         }
-        .btn-link:hover {
-            background: var(--primary-blue);
-            color: #FFF;
-        }
+        .btn-link:hover { background: var(--primary-blue); color: #FFF; }
 
-        /* 手機版微調 */
         @media (max-width: 600px) {
             header h1 { font-size: 1.3rem; }
             nav a { padding: 6px 15px; font-size: 0.9rem; }
@@ -237,16 +230,16 @@
 </header>
 
 <nav id="day-nav">
-    <a href="#day1" class="active">第一天</a>
-    <a href="#day2">第二天</a>
-    <a href="#day3">第三天</a>
+    <a href="#day1" class="active">1/31</a>
+    <a href="#day2">2/1</a>
+    <a href="#day3">2/2</a>
 </nav>
 
 <div class="main-wrapper">
     
     <!-- Day 1 -->
     <section id="day1" class="day-section">
-        <div class="day-title">📅 第一天｜1/9(五) 安平文化散策</div>
+        <div class="day-title">📅 第一天｜1/31(六) 安平文化散策</div>
         
         <div class="card">
             <div class="card-content">
@@ -255,7 +248,7 @@
                 <table class="transport-info">
                     <tr><td class="time">10:48</td><td><b>台北同仁：</b>搭乘高鐵 619 車次抵達嘉義高鐵站。</td></tr>
                     <tr><td class="time">08:50</td><td><b>雲林同仁：</b>工廠集合搭乘巴士前往嘉義高鐵站接台北同仁。</td></tr>
-                    <tr><td class="time">10:00</td><td><b>高雄同仁：</b>出發前往台南，全員會合安平航海城。</td></tr>
+                    <tr><td class="time">10:00</td><td><b>高雄同仁：</b>三方人員會合於安平航海城。</td></tr>
                 </table>
             </div>
         </div>
@@ -265,15 +258,15 @@
             <div class="card-content">
                 <span class="card-tag">LUNCH & HISTORY</span>
                 <h3>深緣及水－安平航海城</h3>
-                <p>「深緣及水」為呈現熱蘭遮城關聯歷史場景，以荷蘭烏特勒支城 (Fort Utrecht) 為入口意象。內裝設計結合大航海時代歐洲與亞洲各國（荷、英、美、西、義、希、日、中等）的文化足跡與貿易歷史，展現當年國際城市景象。</p>
+                <p>以荷蘭烏特勒支城 (Fort Utrecht) 為意象設計，結合大航海時代歐洲與亞洲各國的文化足跡。這裡不僅是餐廳，更是一座形塑安平地標的歷史博物館。</p>
                 <div class="highlight-box">
-                    <h4>全新「安平航海城」亮點：</h4>
+                    <h4>安平航海城亮點：</h4>
                     <ul class="highlight-list">
-                        <li><b>戶外：</b>打卡著名的「英國雙層巴士」。</li>
-                        <li><b>1樓：</b>復刻《鐵達尼號》華麗大廳及各式歷史文物。</li>
-                        <li><b>2樓：</b>台南復古風特色餐廳（享用帕其林自助餐）。</li>
-                        <li><b>3樓：</b>神還原《鐵達尼號》經典甲板造景。</li>
-                        <li><b>4樓：</b>觀景台 360 度賞「安平」美景，與古堡遙遙相對。</li>
+                        <li><b>戶外：</b>英國雙層巴士。</li>
+                        <li><b>1樓：</b>復刻《鐵達尼號》大廳及歷史文物。</li>
+                        <li><b>2樓：</b>台南復古風餐廳。</li>
+                        <li><b>3樓：</b>《鐵達尼號》甲板造景。</li>
+                        <li><b>4樓：</b>觀景台賞「安平」美景。</li>
                     </ul>
                 </div>
             </div>
@@ -284,15 +277,13 @@
             <div class="card-content">
                 <span class="card-tag">AFTERNOON</span>
                 <h3>安平金色流域遊船</h3>
-                <p>搭乘平底船，從河道視角欣賞城市風光。結合光影環境與空間美學，運河倒映出全長 2.5 公里的金色流域，享有「台版塞納河」之美稱。</p>
-                <div class="highlight-box">
-                    <h4>行程體驗：</h4>
-                    <ul class="highlight-list">
-                        <li><b>金色流域：</b>欣賞安平夕照與運河水岸風光（船程約 45-50 分）。</li>
-                        <li><b>趣味過橋：</b>行經低矮橋墩時，需彎下腰低頭才能通過，刺激有趣。</li>
-                        <li><b>古街漫步：</b>安平老街巷弄尋寶，品嚐台南特色小吃、採買伴手禮。</li>
-                    </ul>
-                </div>
+                <p>透過水上視角欣賞台南文化之美，全長 2.5 公里的「金色流域」有著「台版塞納河」之美稱。</p>
+                <ul class="highlight-list" style="padding-top:10px;">
+                    <li>船遊安平運河金色流域，欣賞夕照餘暉。</li>
+                    <li>專業導覽人員解說運河故事。</li>
+                    <li>穿過最低橋墩時需彎腰低頭，體驗刺激有趣。</li>
+                    <li>安平老街漫步，品嚐台南特色小吃。</li>
+                </ul>
             </div>
         </div>
 
@@ -300,22 +291,22 @@
             <div class="card-content">
                 <span class="card-tag">HOTEL</span>
                 <h3>住宿｜禧榕軒酒店</h3>
-                <p>五星級精品飯店，環境舒適且鄰近市區，方便團體晚間自由逛街與休息。</p>
-                <a href="https://www.grandbanyanhotel.com/" target="_blank" class="btn-link">查看酒店官網</a>
+                <p>五星級飯店，環境舒適且鄰近市區，方便同仁晚間逛街休息。</p>
+                <a href="https://www.grandbanyanhotel.com/" target="_blank" class="btn-link">開啟飯店官網</a>
             </div>
         </div>
     </section>
 
     <!-- Day 2 -->
     <section id="day2" class="day-section">
-        <div class="day-title">📅 第二天｜1/10(六) 生態與藝術巡禮</div>
+        <div class="day-title">📅 第二天｜2/1(日) 生態與藝術巡禮</div>
 
         <div class="card">
             <img src="images/day2.jpg" class="card-img" alt="生命之樹">
             <div class="card-content">
                 <span class="card-tag">LANDMARK</span>
                 <h3>青鯤鯓生命之樹</h3>
-                <p>位於扇形鹽田中心的大型藝術裝置。全白優雅的結構，象徵土地的生命张力，是目前台南最受歡迎的團體大合照打卡點。</p>
+                <p>位於扇形鹽田中心，大型藝術裝置。純白優雅，非常適合團體大合照。</p>
             </div>
         </div>
 
@@ -323,16 +314,9 @@
             <img src="images/day2-2.jpg" class="card-img" alt="頑皮世界">
             <div class="card-content">
                 <span class="card-tag">ZOO EXPERIENCE</span>
-                <h3>頑皮世界野生動物園</h3>
-                <p>南台灣最具人氣的互動式動物園。採半開放式設計，讓同仁可以近距離接觸並餵食動物，在忙碌的工作之餘享受大自然的療癒。</p>
-                <div class="highlight-box">
-                    <h4>亮點提醒：</h4>
-                    <ul class="highlight-list">
-                        <li>可餵食水豚、草泥馬、長頸鹿等明星動物。</li>
-                        <li>適合全體團員放鬆享受自然美景。</li>
-                    </ul>
-                </div>
-                <a href="https://www.wanpiworldzoo.com.tw/" target="_blank" class="btn-link">查看園區導覽</a>
+                <h3>頑皮家族動物園</h3>
+                <p>互動式動物園，可以近距離觀察動物並進行餵食，讓全體團員放鬆享受自然。</p>
+                <a href="https://www.wanpiworldzoo.com.tw/" target="_blank" class="btn-link">查看官網</a>
             </div>
         </div>
 
@@ -341,22 +325,30 @@
             <div class="card-content">
                 <span class="card-tag">CULTURE (RESERVE)</span>
                 <h3>烏山頭水庫</h3>
-                <p>湖光山色景緻優美。漫步於八田與一紀念園區，了解台灣水利之父的貢獻與歷史背景。</p>
+                <p>湖光山色景緻優美，可散步參觀八田與一紀念園區，深度了解台灣水利歷史。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <span class="card-tag">HOTEL</span>
+                <h3>住宿｜禧榕軒酒店</h3>
+                <p>延續前晚舒適環境，休息充足後迎接最後一天行程。</p>
             </div>
         </div>
     </section>
 
     <!-- Day 3 -->
     <section id="day3" class="day-section">
-        <div class="day-title">📅 第三天｜1/11(日) 文化洗禮與尾牙慶宴</div>
+        <div class="day-title">📅 第三天｜2/2(一) 文化洗禮與慶宴</div>
 
         <div class="card">
             <img src="images/day3.jpg" class="card-img" alt="佛陀紀念館">
             <div class="card-content">
                 <span class="card-tag">CULTURE</span>
                 <h3>佛光山佛陀紀念館</h3>
-                <p>國際級的文化與宗教園區，建築氣勢磅礴。漫步成佛大道，欣賞宏偉的大佛景觀，最適合團體留影與靜心參訪。</p>
-                <a href="https://www.fgsbmc.org.tw/" target="_blank" class="btn-link">官方網站</a>
+                <p>國際級文化與宗教園區，建築宏偉。最適合全體團員合照與文化參訪。</p>
+                <a href="https://www.fgsbmc.org.tw/" target="_blank" class="btn-link">查看網站</a>
             </div>
         </div>
 
@@ -365,14 +357,7 @@
             <div class="card-content">
                 <span class="card-tag">TAILGATE PARTY</span>
                 <h3>廠辦餐車烤肉（高雄鳳山）</h3>
-                <p>尾牙壓軸活動！採用創新的餐車風格烤肉，營造輕鬆愉快的戶外氛圍。結合團康活動與同仁交流，為三天兩夜的旅程畫下完美句點。</p>
-                <div class="highlight-box">
-                    <h4>圓滿落幕：</h4>
-                    <ul class="highlight-list">
-                        <li>享受美式風格特色烤肉料理。</li>
-                        <li>結束後滿載歡樂回憶返回各地。</li>
-                    </ul>
-                </div>
+                <p>採用美式餐車風格烤肉，提供輕鬆的團康環境，增進同仁交流。結束後滿載歡樂返回各地。</p>
             </div>
         </div>
     </section>
@@ -384,20 +369,18 @@
 </div>
 
 <script>
-    // 天氣 API
     const API_KEY = '88ab07bdb1492d90271d2146ba5efe95';
     async function fetchWeather() {
         try {
             const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Tainan&units=metric&appid=${API_KEY}&lang=zh_tw`);
             const data = await res.json();
             document.getElementById('weather-widget').innerHTML = 
-                `📍 目前目的地氣溫：${Math.round(data.main.temp)}°C / ${data.weather[0].description}`;
+                `📍 目前台南氣溫：${Math.round(data.main.temp)}°C / ${data.weather[0].description}`;
         } catch (e) {
-            document.getElementById('weather-widget').innerText = "📍 氣象站資料讀取中...";
+            document.getElementById('weather-widget').innerText = "📍 氣象資料讀取中...";
         }
     }
 
-    // Scroll Spy 捲動監測
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('.day-section');
         const navLinks = document.querySelectorAll('#day-nav a');
