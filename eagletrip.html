@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>基高公司尾牙之旅</title>
+    <!-- iOS PWA Meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --primary-blue: #1A365D;
+            --accent-gold: #C5A059;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+            --card-bg: #FFFFFF;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 頂部 Header */
+        header {
+            background-color: var(--card-bg);
+            padding: 60px 20px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            letter-spacing: 2px;
+        }
+
+        /* 天氣小工具 */
+        #weather-widget {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 日期滑動選單 */
+        nav {
+            background: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-bottom: 1px solid #EEE;
+            position: sticky;
+            top: 125px; /* 下方 Header */
+            z-index: 99;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        nav a.active {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        /* 內容容器 */
+        .container {
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        .day-section {
+            margin-bottom: 40px;
+            scroll-margin-top: 180px;
+        }
+
+        .day-title {
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 行程卡片 */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .card-type {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .type-transport { background: #E2E8F0; color: #4A5568; }
+        .type-spot { background: #E9F5FE; color: #3182CE; }
+        .type-food { background: #FEF3C7; color: #B45309; }
+        .type-hotel { background: #F0FFF4; color: #2F855A; }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            opacity: 0.9;
+        }
+
+        .card .time {
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .info-list {
+            margin-top: 10px;
+            padding-left: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .info-list li { margin-bottom: 5px; }
+
+        .link-btn {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            border: 1px solid var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 6px;
+        }
+
+        /* 底部裝飾 */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌟 基高公司尾牙之旅</h1>
+    <div id="weather-widget">正在取得台南天氣...</div>
+</header>
+
+<nav id="day-nav">
+    <a href="#day1" class="active">Day 1</a>
+    <a href="#day2">Day 2</a>
+    <a href="#day3">Day 3</a>
+</nav>
+
+<div class="container">
+    
+    <!-- Day 1 -->
+    <section id="day1" class="day-section">
+        <div class="day-title">📅 第一天｜安平文化散策</div>
+        
+        <div class="card">
+            <span class="card-type type-transport">出發資訊</span>
+            <h3>同仁集合與會合</h3>
+            <p><span class="time">10:00</span>高雄/雲林/台北三路會合於安平航海城</p>
+            <ul class="info-list">
+                <li>台北同仁：高鐵619車次 (10:48抵達嘉義)</li>
+                <li>雲林同仁：08:50 工廠搭車前往嘉義接駁</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="card-type type-food">午餐</span>
+            <h3>深緣及水 - 安平航海城</h3>
+            <p>復刻大航海時代場景，享受帕其林自助餐。</p>
+            <ul class="info-list">
+                <li>1F：鐵達尼號大廳、英國文物</li>
+                <li>4F：觀景台俯瞰安平美景</li>
+            </ul>
+            <a href="https://www.google.com/maps/search/?api=1&query=安平航海城" class="link-btn">開啟地圖</a>
+        </div>
+
+        <div class="card">
+            <span class="card-type type-spot">下午行程</span>
+            <h3>安平老街 & 運河遊船</h3>
+            <p>搭乘平底船遊覽「台版塞納河」，穿梭金色流域。</p>
+            <ul class="info-list">
+                <li>航程約 45-50 分鐘</li>
+                <li>老街採買伴手禮、品嚐在地小吃</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="card-type type-hotel">住宿</span>
+            <h3>禧榕軒酒店</h3>
+            <p>五星級精品酒店，鄰近市區、交通便利。</p>
+            <a href="https://www.grandbanyanhotel.com/" class="link-btn">官方網站</a>
+        </div>
+    </section>
+
+    <!-- Day 2 -->
+    <section id="day2" class="day-section">
+        <div class="day-title">📅 第二天｜自然與動物之趣</div>
+        
+        <div class="card">
+            <span class="card-type type-spot">熱門打卡</span>
+            <h3>生命之樹 (Tree of Life)</h3>
+            <p>唯美大型藝術裝置，最適合團體大合照留念。</p>
+        </div>
+
+        <div class="card">
+            <span class="card-type type-spot">互動體驗</span>
+            <h3>頑皮家族動物園</h3>
+            <p>南台灣最大互動式動物園。</p>
+            <ul class="info-list">
+                <li>近距離餵食水豚、草泥馬</li>
+                <li>適合全體團員放鬆享受自然</li>
+            </ul>
+            <a href="https://www.wanpiworldzoo.com.tw/" class="link-btn">園區資訊</a>
+        </div>
+
+        <div class="card">
+            <span class="card-type type-spot">備案行程</span>
+            <h3>烏山頭水庫</h3>
+            <p>參觀八田與一紀念園區，感受湖光山色。</p>
+        </div>
+
+        <div class="card">
+            <span class="card-type type-hotel">住宿</span>
+            <h3>禧榕軒酒店</h3>
+            <p>續住第二晚，享受頂級設施。</p>
+        </div>
+    </section>
+
+    <!-- Day 3 -->
+    <section id="day3" class="day-section">
+        <div class="day-title">📅 第三天｜文化巡禮與烤肉</div>
+        
+        <div class="card">
+            <span class="card-type type-spot">上午行程</span>
+            <h3>佛陀紀念館</h3>
+            <p>國際級文化宗教園區，建築氣勢磅礴。</p>
+            <ul class="info-list">
+                <li>漫步成佛大道、參觀大佛</li>
+                <li>適合團體合照與沉靜心靈</li>
+            </ul>
+            <a href="https://www.fgsbmc.org.tw/" class="link-btn">園區導覽</a>
+        </div>
+
+        <div class="card">
+            <span class="card-type type-food">中午活動</span>
+            <h3>廠辦餐車烤肉 (高雄鳳山)</h3>
+            <p>美式風格餐車烤肉，輕鬆團康與同仁交流。</p>
+            <ul class="info-list">
+                <li>結束後返回各地，圓滿結束旅程</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 基高公司尾牙委員會 祝您旅途愉快
+    </footer>
+</div>
+
+<script>
+    // 天氣 API 整合
+    const API_KEY = '88ab07bdb1492d90271d2146ba5efe95';
+    const CITY = 'Tainan'; // 預設顯示台南天氣
+
+    async function fetchWeather() {
+        try {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&appid=${API_KEY}&lang=zh_tw`);
+            const data = await response.json();
+            const temp = Math.round(data.main.temp);
+            const desc = data.weather[0].description;
+            const icon = data.weather[0].icon;
+            document.getElementById('weather-widget').innerHTML = `
+                <img src="https://openweathermap.org/img/wn/${icon}.png" width="30">
+                <span>台南目前：${temp}°C / ${desc}</span>
+            `;
+        } catch (error) {
+            document.getElementById('weather-widget').innerHTML = '無法載入天氣資訊';
+        }
+    }
+
+    // Scroll Spy 功能：自動切換導航狀態
+    const sections = document.querySelectorAll('.day-section');
+    const navLinks = document.querySelectorAll('#day-nav a');
+
+    window.addEventListener('scroll', () => {
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href').includes(current)) {
+                a.classList.add('active');
+            }
+        });
+    });
+
+    // 點擊平滑捲動
+    navLinks.forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // 初始化
+    fetchWeather();
+</script>
+
+</body>
+</html>
