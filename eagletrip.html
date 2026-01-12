@@ -16,7 +16,7 @@
             --text-light: #718096;
             --card-bg: #FFFFFF;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            --max-width: 1000px; 
+            --max-width: 1000px;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -30,178 +30,104 @@
             scroll-behavior: smooth;
         }
 
-        .hero-banner { 
-            width: 100%; 
-            background: #FFF; 
-            border-bottom: 1px solid #EEE;
-            display: flex;
-            justify-content: center;
-        }
-        .hero-banner .inner-hero {
-            width: 100%;
-            max-width: var(--max-width);
-        }
+        /* --- Header & Nav --- */
+        .hero-banner { width: 100%; background: #FFF; border-bottom: 1px solid #EEE; display: flex; justify-content: center; }
+        .hero-banner .inner-hero { width: 100%; max-width: var(--max-width); }
         .hero-banner img { width: 100%; height: auto; display: block; }
 
-        header {
-            background-color: #FFF; 
-            padding: 30px 20px; 
-            text-align: center;
-        }
-        header h1 { 
-            margin: 0; 
-            font-size: 1.6rem; 
-            color: var(--primary-blue); 
-            letter-spacing: 3px; 
-            font-weight: 700;
-        }
-        #weather-widget { 
-            font-size: 0.95rem; 
-            color: var(--text-light); 
-            margin-top: 10px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
+        header { background-color: #FFF; padding: 30px 20px; text-align: center; }
+        header h1 { margin: 0; font-size: 1.6rem; color: var(--primary-blue); letter-spacing: 3px; font-weight: 700; }
+        #weather-widget { font-size: 0.95rem; color: var(--text-light); margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 10px; }
 
         nav {
-            background: rgba(255,255,255,0.95); 
-            display: flex; 
-            justify-content: center;
-            gap: 20px;
-            padding: 15px 0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
-            border-bottom: 1px solid #EEE; 
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95); display: flex; justify-content: center; gap: 20px; padding: 15px 0;
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #EEE; backdrop-filter: blur(10px);
         }
-        nav a {
-            text-decoration: none; 
-            color: var(--text-light); 
-            font-size: 1rem;
-            padding: 8px 25px; 
-            border-radius: 30px; 
-            transition: 0.3s;
-            font-weight: 400;
-        }
-        nav a.active { 
-            background-color: var(--primary-blue); 
-            color: white; 
-            font-weight: 500;
-            box-shadow: 0 4px 10px rgba(26, 54, 93, 0.2);
+        nav a { text-decoration: none; color: var(--text-light); font-size: 1rem; padding: 8px 25px; border-radius: 30px; transition: 0.3s; font-weight: 400; }
+        nav a.active { background-color: var(--primary-blue); color: white; font-weight: 500; box-shadow: 0 4px 10px rgba(26, 54, 93, 0.2); }
+
+        .main-wrapper { max-width: var(--max-width); margin: 0 auto; padding: 30px 20px 100px 20px; }
+
+        /* --- Layout --- */
+        .day-section { scroll-margin-top: 100px; margin-bottom: 60px; }
+        .day-title {
+            font-size: 1.4rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 25px;
+            padding-left: 15px; border-left: 5px solid var(--accent-gold); display: flex; align-items: center; gap: 10px;
         }
 
-        .main-wrapper {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 30px 20px 100px 20px;
-        }
-
-        .day-section { 
-            scroll-margin-top: 100px; 
-            margin-bottom: 60px; 
-        }
-        .day-title { 
-            font-size: 1.4rem; 
-            color: var(--primary-blue); 
-            font-weight: 700; 
-            margin-bottom: 25px; 
-            padding-left: 15px; 
-            border-left: 5px solid var(--accent-gold);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        /* --- Cards --- */
         .card {
-            background: var(--card-bg); 
-            border-radius: 20px; 
-            margin-bottom: 30px; 
-            box-shadow: var(--shadow); 
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            background: var(--card-bg); border-radius: 20px; margin-bottom: 30px;
+            box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
+            transition: transform 0.2s ease;
         }
+        .card:active { transform: scale(0.99); } /* 按下微縮效果 */
 
-        .card-img {
-            width: 100%; 
-            height: auto;
-            max-height: 500px; 
-            object-fit: cover; 
-            background: #F0F0F0;
+        .card-img { width: 100%; height: auto; max-height: 500px; object-fit: cover; background: #F0F0F0; }
+        .card-content { padding: 30px; position: relative; }
+
+        .card-tag { font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .card h3 { margin: 0 0 15px 0; font-size: 1.3rem; color: var(--primary-blue); }
+        .card p { font-size: 1rem; color: var(--text-dark); margin: 0 0 20px 0; text-align: justify; opacity: 0.9; }
+
+        /* --- Buttons --- */
+        .btn-link {
+            display: inline-block; margin-top: 10px; padding: 10px 20px;
+            border: 1px solid var(--primary-blue); color: var(--primary-blue);
+            text-decoration: none; border-radius: 10px; font-size: 0.9rem; transition: 0.3s;
         }
+        .btn-link:hover { background: var(--primary-blue); color: #FFF; }
 
-        .card-content { padding: 30px; }
+        .details-btn {
+            background: var(--accent-gold); color: white; border: none; padding: 10px 20px;
+            border-radius: 30px; font-size: 0.9rem; cursor: pointer; font-weight: bold;
+            display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+            transition: transform 0.2s;
+        }
+        .details-btn:active { transform: scale(0.95); }
+
+        /* --- Highlight Box (Hidden by default, shown in Modal) --- */
+        .highlight-box { display: none; } /* 預設隱藏，保持版面乾淨 */
         
-        .card-tag { 
-            font-size: 0.75rem; 
-            color: var(--accent-gold); 
-            font-weight: 700; 
-            letter-spacing: 2px; 
-            margin-bottom: 10px; 
-            display: block;
-        }
-        .card h3 { 
-            margin: 0 0 15px 0; 
-            font-size: 1.3rem; 
-            color: var(--primary-blue); 
-        }
-        .card p { 
-            font-size: 1rem; 
-            color: var(--text-dark); 
-            margin: 0 0 20px 0; 
-            text-align: justify;
-            opacity: 0.9;
-        }
-
-        .highlight-box {
-            background: #F8F9FB; 
-            border-radius: 12px; 
-            padding: 20px; 
-            margin-top: 15px;
-            border-left: 3px solid #E2E8F0;
-        }
-        .highlight-box h4 { margin: 0 0 10px 0; font-size: 1rem; color: var(--primary-blue); }
-        .highlight-list { margin: 0; padding-left: 20px; font-size: 0.95rem; color: var(--text-light); }
-        .highlight-list li { margin-bottom: 8px; }
-
-        .transport-info {
-            font-size: 1rem; 
-            border-collapse: collapse; 
-            width: 100%; 
-            margin-top: 10px;
-        }
+        .transport-info { font-size: 1rem; border-collapse: collapse; width: 100%; margin-top: 10px; }
         .transport-info td { padding: 12px 10px; border-bottom: 1px solid #F0F0F0; }
         .transport-info .time { color: var(--accent-gold); font-weight: 700; width: 90px; }
 
-        footer { 
-            text-align: center; 
-            padding: 60px 20px; 
-            color: var(--text-light); 
-            font-size: 0.9rem; 
-            background: #FFF;
-            border-top: 1px solid #EEE; 
-        }
+        footer { text-align: center; padding: 60px 20px; color: var(--text-light); font-size: 0.9rem; background: #FFF; border-top: 1px solid #EEE; }
 
-        .btn-link { 
-            display: inline-block; 
-            margin-top: 10px; 
-            padding: 10px 20px; 
-            border: 1px solid var(--primary-blue); 
-            color: var(--primary-blue);
-            text-decoration: none; 
-            border-radius: 10px; 
-            font-size: 0.9rem;
+        /* --- MODAL (Popup) Styles --- */
+        .modal-overlay {
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            align-items: center; justify-content: center; padding: 20px; opacity: 0; transition: opacity 0.3s;
         }
+        .modal-overlay.show { display: flex; opacity: 1; }
+
+        .modal-container {
+            background: #FFF; width: 100%; max-width: 600px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative;
+            transform: translateY(20px); transition: transform 0.3s; overflow: hidden;
+            display: flex; flex-direction: column; max-height: 80vh;
+        }
+        .modal-overlay.show .modal-container { transform: translateY(0); }
+
+        .modal-header {
+            padding: 20px; background: var(--primary-blue); color: white;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .modal-header h3 { margin: 0; font-size: 1.2rem; }
+        .close-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 0 10px; }
+
+        .modal-body { padding: 30px; overflow-y: auto; background: #F8F9FB; }
+        .modal-body ul { padding-left: 20px; margin: 0; color: var(--text-dark); }
+        .modal-body li { margin-bottom: 10px; }
+        .modal-body h4 { color: var(--accent-gold); margin-top: 0; }
 
         @media (max-width: 600px) {
             header h1 { font-size: 1.3rem; }
             nav a { padding: 6px 15px; font-size: 0.9rem; }
             .card-content { padding: 20px; }
             .card-img { height: 220px; }
-            .day-title { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -226,38 +152,42 @@
 
 <div class="main-wrapper">
     
-    <!-- Day 1 -->
     <section id="day1" class="day-section">
-        <div class="day-title">📅 第一天｜1/31(六) 安平文化散策</div>
+        <div class="day-title">Day1｜1/31(六) 安平文化散策</div>
         
         <div class="card">
             <div class="card-content">
                 <span class="card-tag">TRANSPORT</span>
                 <h3>交通集合資訊</h3>
                 <table class="transport-info">
-                    <tr><td class="time">10:48</td><td><b>台北同仁：</b>搭乘高鐵 619 車次抵達嘉義高鐵站。</td></tr>
-                    <tr><td class="time">08:50</td><td><b>雲林同仁：</b>工廠集合搭乘巴士前往嘉義高鐵站接台北同仁。</td></tr>
-                    <tr><td class="time">10:00</td><td><b>高雄同仁：</b>三方人員會合於安平航海城展開行程。</td></tr>
+                    <tr><td class="time">10:48</td><td><b>台北同仁：</b>搭乘高鐵619班車次前往嘉義 (10:48抵達)</td></tr>
+                    <tr><td class="time">08:50</td><td><b>雲林同仁：</b>工廠集合 (崙背鄉大利街) 搭乘巴士前往嘉義高鐵站</td></tr>
+                    <tr><td class="time">10:00</td><td><b>高雄同仁：</b>鳳山北賢街集合 -> 岡山交流道接人 -> 前往安平</td></tr>
                 </table>
             </div>
         </div>
 
-        <!-- 修正午餐內容 -->
         <div class="card">
             <img src="images/day1.jpg" class="card-img" alt="安平航海城">
             <div class="card-content">
                 <span class="card-tag">LUNCH & HISTORY</span>
                 <h3>深緣及水－安平航海城</h3>
-                <p><b>於台南市區享用在地特色風味餐、航海城帕其林自助餐。</b></p>
-                <p>深緣及水為呈現熱蘭遮城關聯歷史場景，以荷蘭歷史文化古城烏特勒支城 (Fort Utrecht) 作為入口意象設計整建。結合大航海時代歐洲及亞洲相關國家在安平留下的文化足跡，展現當年國際城市景象。</p>
-                <div class="highlight-box">
-                    <h4>全新「安平航海城」亮點：</h4>
-                    <ul class="highlight-list">
-                        <li>1. 戶外：打卡「英國雙層巴士」。</li>
-                        <li>2. 1樓：復刻《鐵達尼號》華麗大廳及英國歷史文物收藏。</li>
-                        <li>3. 2樓：台南復古風餐廳。</li>
-                        <li>4. 3樓：神還原《鐵達尼號》甲板造景。</li>
-                        <li>5. 4樓：觀景台賞「安平」全景，與安平古堡遙相對應。</li>
+                <p><b>午餐 | 於台南市區享用在地特色風味餐、航海城帕其林自助餐。</b></p>
+                <p>以荷蘭烏特勒支城為意象設計，重現大航海時代的熱蘭遮城風貌，融合歐亞文化足跡。</p>
+                
+                <button class="details-btn" onclick="openModal('安平航海城－必看亮點', 'highlight-1')">
+                    ✨ 查看必拍亮點
+                </button>
+
+                <div id="highlight-1" class="highlight-box">
+                    <h4>📸 網美/網帥必拍區域：</h4>
+                    <ul>
+                        <li><b>戶外：</b>打卡「英國雙層巴士」，英倫風情滿滿。</li>
+                        <li><b>1樓：</b>復刻《鐵達尼號》華麗大廳，震撼視覺。</li>
+                        <li><b>1樓：</b>豐富的英國歷史文物收藏展覽。</li>
+                        <li><b>2樓：</b>台南復古風餐廳，穿越時空。</li>
+                        <li><b>3樓：</b>神還原《鐵達尼號》甲板造景 (傑克與蘿絲等你來演)。</li>
+                        <li><b>4樓：</b>超廣角觀景台，俯瞰「安平」全景。</li>
                     </ul>
                 </div>
             </div>
@@ -266,14 +196,19 @@
         <div class="card">
             <img src="images/day1-2.jpg" class="card-img" alt="金色流域">
             <div class="card-content">
-                <span class="card-tag">AFTERNOON</span>
+                <span class="card-tag">AFTERNOON | 下午行程</span>
                 <h3>安平老街 & 金色流域遊船</h3>
-                <p>搭乘平底船從河道視角欣賞城市風光，結合運河、光影與空間美學，倒映出全長 2.5 公里的「金色流域」，享有「台版塞納河」之美稱。</p>
-                <div class="highlight-box">
-                    <h4>行程體驗：</h4>
-                    <ul class="highlight-list">
+                <p>搭乘平底船欣賞「台版塞納河」，結合運河與光影，倒映出全長 2.5 公里的金色流域。</p>
+                
+                <button class="details-btn" onclick="openModal('遊船體驗－行程重點', 'highlight-2')">
+                    ✨ 查看遊船體驗
+                </button>
+
+                <div id="highlight-2" class="highlight-box">
+                    <h4>🚤 行程特色體驗：</h4>
+                    <ul>
                         <li><b>金色流域：</b>欣賞安平夕照與運河美景（航程約 45-50 分）。</li>
-                        <li><b>趣味過橋：</b>行經最低橋墩時，需彎腰低頭才能通過，十分刺激有趣。</li>
+                        <li><b>趣味過橋：</b>行經最低橋墩時，全船需「彎腰低頭」才能通過，考驗腰力！</li>
                         <li><b>老街漫步：</b>古街巷弄巡禮，品嚐在地小吃及採買伴手禮。</li>
                     </ul>
                 </div>
@@ -282,46 +217,82 @@
 
         <div class="card">
             <div class="card-content">
+                <span class="card-tag">DINNER</span>
+                <h3>晚餐 | 欣欣餐廳</h3>
+                <p>地址：700臺南市中西區民族路二段245號<br>電話：06 222 2509</p>
+                <a href="https://maps.google.com/?q=欣欣餐廳" target="_blank" class="btn-link">📍 導航</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
                 <span class="card-tag">HOTEL</span>
                 <h3>住宿｜禧榕軒酒店</h3>
                 <p>五星級精品飯店，鄰近市區、環境舒適，適合團體入住與晚間自由休息。</p>
-                <a href="https://www.grandbanyanhotel.com/" target="_blank" class="btn-link">開啟飯店官網</a>
+                <a href="https://www.grandbanyanhotel.com/" target="_blank" class="btn-link">🏨 開啟飯店官網</a>
             </div>
         </div>
     </section>
 
-    <!-- Day 2 -->
     <section id="day2" class="day-section">
-        <div class="day-title">📅 第二天｜2/1(日) 生態與自然巡禮</div>
-
-        <div class="card">
-            <img src="images/day2.jpg" class="card-img" alt="生命之樹">
-            <div class="card-content">
-                <span class="card-tag">LANDMARK</span>
-                <h3>青鯤鯓生命之樹</h3>
-                <p>位於扇形鹽田中心的大型純白藝術裝置，象徵土地的生命張力，最適合全體同仁拍攝團體大合照。</p>
-            </div>
-        </div>
+        <div class="day-title">Day2｜2/1(日) 生態與自然巡禮</div>
 
         <div class="card">
             <img src="images/day2-2.jpg" class="card-img" alt="頑皮世界">
             <div class="card-content">
                 <span class="card-tag">ZOO EXPERIENCE</span>
-                <h3>頑皮家族動物園</h3>
-                <p>南台灣最具規模的互動式動物園。採半開放式設計，可近距離觀察並親自餵食水豚、草泥馬等可愛動物。</p>
-                <a href="https://www.wanpiworldzoo.com.tw/" target="_blank" class="btn-link">查看園區官網</a>
+                <h3>9點出發 頑皮家族動物園</h3>
+                <p>南台灣最具規模的互動式動物園。可近距離觀察並親自餵食水豚、草泥馬等可愛動物。</p>
+                
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <a href="https://www.wanpiworldzoo.com.tw/" target="_blank" class="btn-link">🦁 官網</a>
+                    <button class="details-btn" onclick="openModal('頑皮世界－遊玩重點', 'highlight-zoo')">
+                        ✨ 查看遊玩重點
+                    </button>
+                </div>
+
+                <div id="highlight-zoo" class="highlight-box">
+                    <h4>🦁 園區特色體驗：</h4>
+                    <ul>
+                        <li><b>南台灣最大：</b>半開放式野生動物園，親近自然。</li>
+                        <li><b>超人氣互動：</b>近距離餵食水豚君、羊駝 (草泥馬)。</li>
+                        <li><b>寓教於樂：</b>適合全家大小的自然生態教室。</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <div class="card">
+            <div class="card-content">
+                <span class="card-tag">LUNCH</span>
+                <h3>午餐 | 12:30 海口現撈海鮮餐廳</h3>
+                <p>地址：台南市新營區新進路二段215-8號<br>電話：（06）656-2174</p>
+                <a href="https://www.facebook.com/haikoseafood" target="_blank" class="btn-link">🦞 餐廳資訊</a>
+            </div>
+        </div>
+        
         <div class="card">
             <img src="images/day2-3.jpg" class="card-img" alt="烏山頭水庫">
             <div class="card-content">
                 <span class="card-tag">CULTURE (RESERVE)</span>
                 <h3>烏山頭水庫</h3>
                 <p>景緻優美。可散步參觀八田與一紀念園區，深度了解台灣水利歷史背景與水庫壯麗風光。</p>
+                
+                <button class="details-btn" onclick="openModal('烏山頭水庫－參觀重點', 'highlight-wusanto')">
+                    ✨ 查看參觀重點
+                </button>
+
+                <div id="highlight-wusanto" class="highlight-box">
+                    <h4>⛩️ 文化與風景：</h4>
+                    <ul>
+                        <li><b>湖光山色：</b>水庫景緻優美，適合散步拍照。</li>
+                        <li><b>歷史巡禮：</b>參觀八田與一紀念園區，感受日式建築風情。</li>
+                        <li><b>知性之旅：</b>深度了解台灣水利歷史背景與建設故事。</li>
+                    </ul>
+                </div>
             </div>
         </div>
-
+        
         <div class="card">
             <div class="card-content">
                 <span class="card-tag">HOTEL</span>
@@ -331,9 +302,8 @@
         </div>
     </section>
 
-    <!-- Day 3 -->
     <section id="day3" class="day-section">
-        <div class="day-title">📅 第三天｜2/2(一) 文化洗禮與尾牙慶宴</div>
+        <div class="day-title">Day3｜2/2(一) 文化洗禮與尾牙慶宴</div>
 
         <div class="card">
             <img src="images/day3.jpg" class="card-img" alt="佛陀紀念館">
@@ -341,7 +311,7 @@
                 <span class="card-tag">CULTURE</span>
                 <h3>佛光山佛陀紀念館</h3>
                 <p>國際級文化與宗教園區，建築氣勢磅礴。漫步成佛大道，是全體同仁文化參訪與留念的首選景點。</p>
-                <a href="https://www.fgsbmc.org.tw/" target="_blank" class="btn-link">官方導覽網</a>
+                <a href="https://www.fgsbmc.org.tw/" target="_blank" class="btn-link">🙏 官方導覽網</a>
             </div>
         </div>
 
@@ -353,12 +323,36 @@
                 <p>尾牙壓軸活動！採用美式餐車風格烤肉，輕鬆的團康氛圍與美食交流，為三日旅遊畫下完美句點。</p>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-content">
+                <span class="card-tag">RETURN TRANSPORT</span>
+                <h3>賦歸 | 交通資訊</h3>
+                <table class="transport-info">
+                    <tr>
+                        <td class="time">15:55</td>
+                        <td><b>台北同仁：</b>左營高鐵站搭乘 140 車次 (15:55發車) 返回台北。</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </section>
 
     <footer>
         <p><b>基高股份有限公司 Eagle Process Service Ltd.</b></p>
         <p>&copy; 2025 尾牙籌備小組 製作 ・ 祝您旅途愉快</p>
     </footer>
+</div>
+
+<div id="info-modal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3 id="modal-title">詳細資訊</h3>
+            <button class="close-btn" onclick="forceClose()">×</button>
+        </div>
+        <div id="modal-body" class="modal-body">
+            </div>
+    </div>
 </div>
 
 <script>
@@ -368,9 +362,9 @@
             const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Tainan&units=metric&appid=${API_KEY}&lang=zh_tw`);
             const data = await res.json();
             document.getElementById('weather-widget').innerHTML = 
-                `📍 目前目的地氣溫：${Math.round(data.main.temp)}°C / ${data.weather[0].description}`;
+                `📍 台南氣溫：${Math.round(data.main.temp)}°C / ${data.weather[0].description}`;
         } catch (e) {
-            document.getElementById('weather-widget').innerText = "📍 氣象資料讀取中...";
+            document.getElementById('weather-widget').innerText = "📍 氣象資料連線中...";
         }
     }
 
@@ -392,6 +386,30 @@
             }
         });
     });
+
+    // --- Modal 功能邏輯 ---
+    const modal = document.getElementById('info-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    function openModal(title, contentId) {
+        modalTitle.innerText = title;
+        const content = document.getElementById(contentId).innerHTML;
+        modalBody.innerHTML = content;
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+        if (event.target === modal) {
+            forceClose();
+        }
+    }
+
+    function forceClose() {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
 
     fetchWeather();
 </script>
