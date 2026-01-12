@@ -220,6 +220,7 @@
                 <span class="card-tag">DINNER</span>
                 <h3>晚餐 | 欣欣餐廳</h3>
                 <p>地址：700臺南市中西區民族路二段245號<br>電話：06 222 2509</p>
+                <a href="https://maps.google.com/?q=欣欣餐廳" target="_blank" class="btn-link">📍 導航</a>
             </div>
         </div>
 
@@ -242,7 +243,22 @@
                 <span class="card-tag">ZOO EXPERIENCE</span>
                 <h3>9點出發 頑皮家族動物園</h3>
                 <p>南台灣最具規模的互動式動物園。可近距離觀察並親自餵食水豚、草泥馬等可愛動物。</p>
-                <a href="https://www.wanpiworldzoo.com.tw/" target="_blank" class="btn-link">🦁 查看園區官網</a>
+                
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <a href="https://www.wanpiworldzoo.com.tw/" target="_blank" class="btn-link">🦁 官網</a>
+                    <button class="details-btn" onclick="openModal('頑皮世界－遊玩重點', 'highlight-zoo')">
+                        ✨ 查看遊玩重點
+                    </button>
+                </div>
+
+                <div id="highlight-zoo" class="highlight-box">
+                    <h4>🦁 園區特色體驗：</h4>
+                    <ul>
+                        <li><b>南台灣最大：</b>半開放式野生動物園，親近自然。</li>
+                        <li><b>超人氣互動：</b>近距離餵食水豚君、羊駝 (草泥馬)。</li>
+                        <li><b>寓教於樂：</b>適合全家大小的自然生態教室。</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -261,6 +277,19 @@
                 <span class="card-tag">CULTURE (RESERVE)</span>
                 <h3>烏山頭水庫</h3>
                 <p>景緻優美。可散步參觀八田與一紀念園區，深度了解台灣水利歷史背景與水庫壯麗風光。</p>
+                
+                <button class="details-btn" onclick="openModal('烏山頭水庫－參觀重點', 'highlight-wusanto')">
+                    ✨ 查看參觀重點
+                </button>
+
+                <div id="highlight-wusanto" class="highlight-box">
+                    <h4>⛩️ 文化與風景：</h4>
+                    <ul>
+                        <li><b>湖光山色：</b>水庫景緻優美，適合散步拍照。</li>
+                        <li><b>歷史巡禮：</b>參觀八田與一紀念園區，感受日式建築風情。</li>
+                        <li><b>知性之旅：</b>深度了解台灣水利歷史背景與建設故事。</li>
+                    </ul>
+                </div>
             </div>
         </div>
         
@@ -294,6 +323,19 @@
                 <p>尾牙壓軸活動！採用美式餐車風格烤肉，輕鬆的團康氛圍與美食交流，為三日旅遊畫下完美句點。</p>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-content">
+                <span class="card-tag">RETURN TRANSPORT</span>
+                <h3>賦歸 | 交通資訊</h3>
+                <table class="transport-info">
+                    <tr>
+                        <td class="time">15:55</td>
+                        <td><b>台北同仁：</b>左營高鐵站搭乘 140 車次 (15:55發車) 返回台北。</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </section>
 
     <footer>
@@ -314,7 +356,6 @@
 </div>
 
 <script>
-    // --- 氣象 widget ---
     const API_KEY = '88ab07bdb1492d90271d2146ba5efe95';
     async function fetchWeather() {
         try {
@@ -327,7 +368,6 @@
         }
     }
 
-    // --- 滾動監聽 (Active Nav) ---
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('.day-section');
         const navLinks = document.querySelectorAll('#day-nav a');
@@ -353,19 +393,14 @@
     const modalBody = document.getElementById('modal-body');
 
     function openModal(title, contentId) {
-        // 1. 設定標題
         modalTitle.innerText = title;
-        // 2. 抓取隱藏的內容
         const content = document.getElementById(contentId).innerHTML;
         modalBody.innerHTML = content;
-        // 3. 顯示 Modal (Flex)
         modal.classList.add('show');
-        // 4. 禁止背景滾動
         document.body.style.overflow = 'hidden';
     }
 
     function closeModal(event) {
-        // 點擊半透明黑色背景時才關閉 (避免點擊內容時關閉)
         if (event.target === modal) {
             forceClose();
         }
@@ -373,7 +408,7 @@
 
     function forceClose() {
         modal.classList.remove('show');
-        document.body.style.overflow = 'auto'; // 恢復背景滾動
+        document.body.style.overflow = 'auto';
     }
 
     fetchWeather();
